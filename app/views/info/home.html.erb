@@ -1,1 +1,16 @@
 <p><%= link_to "Login", new_delegate_session_path %></p>
+
+<!-- Just testing.  Will put into controller !!!! -->
+
+<% @case_count = Case.where(:done => true).count%>
+You have given <%= current_delegate.feedbacks.count * @case_count %> feedback
+
+<% Feedback.all.each do |f| %>
+
+<!-- Not actually giver change this -->
+<% if f.receiver == current_delegate.fullname %>
+
+<h1><%= f.good_comments %></h1>
+
+<% end %>
+	<% end %>

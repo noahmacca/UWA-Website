@@ -31,3 +31,5 @@ gem 'devise'
 gem 'activeadmin', github: 'activeadmin'
 
 gem 'angularjs-rails'
+
+gem 'activerecord-reputation-system'

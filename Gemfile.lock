@@ -39,6 +39,7 @@ GEM
       activemodel (= 4.1.8)
       activesupport (= 4.1.8)
       arel (~> 5.0.0)
+    activerecord-reputation-system (3.0.1)
     activesupport (4.1.8)
       i18n (~> 0.6, >= 0.6.9)
       json (~> 1.7, >= 1.7.7)
@@ -170,6 +171,7 @@ PLATFORMS
 
 DEPENDENCIES
   activeadmin!
+  activerecord-reputation-system
   angularjs-rails
   coffee-rails (~> 4.0.0)
   devise

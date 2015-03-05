@@ -1,0 +1,33 @@
+<%= form_for(@exec) do |f| %>
+  <% if @exec.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@exec.errors.count, "error") %> prohibited this exec from being saved:</h2>
+
+      <ul>
+      <% @exec.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :exec_name %><br>
+    <%= f.text_field :exec_name %>
+  </div>
+  <div class="field">
+    <%= f.label :team %><br>
+    <%= f.text_field :team %>
+  </div>
+  <div class="field">
+    <%= f.label :responsibilities %><br>
+    <%= f.text_area :responsibilities %>
+  </div>
+  <div class="field">
+    <%= f.label :program %><br>
+    <%= f.text_field :program %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

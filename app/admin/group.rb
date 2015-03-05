@@ -14,5 +14,7 @@ ActiveAdmin.register Group do
   #   permitted
   # end
 
+permit_params :name, :delegates
+
 
 end

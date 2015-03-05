@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  giver: MyString
+  good_comments: MyText
+  improvement_comments: MyText
+  leadership: 1
+  creativity: 1
+
+two:
+  giver: MyString
+  good_comments: MyText
+  improvement_comments: MyText
+  leadership: 1
+  creativity: 1

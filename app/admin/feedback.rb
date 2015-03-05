@@ -1,4 +1,4 @@
-ActiveAdmin.register Delegate do
+ActiveAdmin.register Feedback do
 
 
   # See permitted parameters documentation:
@@ -14,6 +14,5 @@ ActiveAdmin.register Delegate do
   #   permitted
   # end
 
-permit_params :fullname, :email, :groups
-
+permit_params :receiver, :good_comments, :improvement_comments, :leadership
 end

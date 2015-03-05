@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  exec_name: MyString
+  team: MyString
+  responsibilities: MyText
+  program: MyString
+
+two:
+  exec_name: MyString
+  team: MyString
+  responsibilities: MyText
+  program: MyString

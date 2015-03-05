@@ -1,4 +1,4 @@
-ActiveAdmin.register Delegate do
+ActiveAdmin.register Exec do
 
 
   # See permitted parameters documentation:
@@ -14,6 +14,7 @@ ActiveAdmin.register Delegate do
   #   permitted
   # end
 
-permit_params :fullname, :email, :groups
+
+permit_params :exec_name, :position, :team, :program, :responsibilities
 
 end

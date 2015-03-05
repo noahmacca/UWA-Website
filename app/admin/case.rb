@@ -13,11 +13,14 @@ ActiveAdmin.register Case do
   #   permitted << :other if resource.something?
   #   permitted
   # end
-
+=begin
   index do
     column :title
     column :sponsor
     column :description
   end
+
+=end
+permit_params :title, :sponsor, :description, :done
 
 end

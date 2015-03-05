@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Giver:</strong>
+  <%= @feedback.giver %>
+</p>
+
+<p>
+  <strong>Good comments:</strong>
+  <%= @feedback.good_comments %>
+</p>
+
+<p>
+  <strong>Improvement comments:</strong>
+  <%= @feedback.improvement_comments %>
+</p>
+
+<p>
+  <strong>Leadership:</strong>
+  <%= @feedback.leadership %>
+</p>
+
+<p>
+  <strong>Creativity:</strong>
+  <%= @feedback.creativity %>
+</p>
+
+<%= link_to 'Edit', edit_feedback_path(@feedback) %> |
+<%= link_to 'Back', feedbacks_path %>
