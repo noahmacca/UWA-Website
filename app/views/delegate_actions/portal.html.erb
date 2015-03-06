@@ -1,1 +1,125 @@
-<h1>Delegate Portal</h1>
+<!-- <h1><%= current_delegate.fullname %></h1>
+<hr>-->
+
+<% if current_delegate.linkedin == nil or current_delegate.facebook or current_delegate.twitter %>
+<div class="alert alert-warning" role="alert" style="margin-top:30px;">
+	
+	<p>Pssstttt <%= current_delegate.fullname %>, you have yet to fill out your social info.  Fill it out so other delegates
+	can connect with you after the conference. :)</p>
+
+	<%= link_to "Edit your social networks", edit_delegate_registration_path %>
+
+</div>
+
+<% end %>
+
+<h2>Overview</h2>
+    <div class="row">
+
+    <%= link_to "#analytics" do %>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <%= fa_icon "bar-chart 5x" %>
+                                    </div>
+                                    <div class="col-xs-9 text-right">
+                                        <div class="huge">1800</div>
+                                        <div>Total Score</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <% end %>
+
+   <%= link_to "#analytics" do %>
+ <div class="col-lg-3 col-md-6">
+                        <div class="panel panel-yellow">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <%= fa_icon "trophy 5x" %>
+                                    </div>
+                                    <div class="col-xs-9 text-right">
+                                        <div class="huge">Yes</div>
+                                        <div>Top Three!</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+<% end %>
+
+<%= link_to new_feedback_path do %>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="panel panel-green">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <%= fa_icon "exclamation 5x"%>
+                                    </div>
+                                    <div class="col-xs-9 text-right">
+                                        <div class="huge">1</div>
+                                        <div>Pending Feedback</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                <% end %>   
+
+<%= link_to feedbacks_path do %>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="panel panel-red">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <%= fa_icon "info 5x"%>
+                                    </div>
+                                    <div class="col-xs-9 text-right">
+                                        <div class="huge">4</div>
+                                        <div>Feedback Received</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            </div>
+                            </div>
+
+                            <% end %>
+                            </div>
+<h2>Cases</h2>
+
+<div class="col-lg-12">
+<% Case.where(:case_sponsor => true).each do |c| %>
+
+<%= link_to case_path(c) do %>
+<div class="col-md-3">
+
+<%= image_tag(c.sponsor_logo, :class => 'img-responsive') %>
+<h4><%= c.sponsor%></h4>
+
+</div>
+<% end %>
+
+<% end %>
+</div>
+
+<hr>
+
+<div id="analytics">
+<h2>Personal Analytics (placeholders nothing til confirmation)</h2>
+
+<div class="col-md-6">
+<%= image_tag("http://placehold.it/500x500", :class => 'img-responsive') %>
+</div>
+<div class="col-md-6">
+<%= image_tag("http://placehold.it/500x500", :class => 'img-responsive') %>
+</div>
+</div>

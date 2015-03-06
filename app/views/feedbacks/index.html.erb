@@ -1,4 +1,4 @@
-<h1>Listing feedbacks</h1>
+<!--<h1>Listing feedbacks</h1>
 
 <table>
   <thead>
@@ -15,7 +15,7 @@
   <tbody>
     <% @feedbacks.each do |feedback| %>
       <tr>
-        <td><%= feedback.giver %></td>
+        <td><%= feedback.receiver %></td>
         <td><%= feedback.good_comments %></td>
         <td><%= feedback.improvement_comments %></td>
         <td><%= feedback.leadership %></td>
@@ -31,3 +31,31 @@
 <br>
 
 <%= link_to 'New Feedback', new_feedback_path %>
+-->
+
+<h1>Your Feedback</h1>
+
+
+<% received_feedback = Feedback.where(:receiver => current_delegate) %>
+
+<% received_feedback.each do |f| %>
+ <div class="block-update-card status">
+    <div class="update-card-body">
+      <div class="update-card-body">
+      <h6> Good </h6>
+      <p><%= received_feedback.good_comments %></p>
+      <hr>
+
+      <h6>Needs Improvement </h6>
+      <p><%= received_feedback.improvement_comments %></p>
+    </div>
+    </div>
+    <div class="card-action-pellet btn-toolbar pull-right" role="toolbar">
+  <div class="btn-group fa fa-mail-reply"></div>
+  <div class="btn-group fa fa-map-marker"></div>
+  <div class="btn-group fa fa-magic"></div>
+  <div class="btn-group fa fa-photo"></div>
+</div>
+</div>
+
+<% end %>

@@ -18,4 +18,7 @@ Rails.application.routes.draw do
   end
     root to: 'info#home'
 
+    get '/portal', to: 'delegate_actions#portal'
+
+    get '/all_delegates', to: 'delegate_actions#all_delegates'
 end

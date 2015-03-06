@@ -23,6 +23,7 @@ body { padding-top: 60px; }
 
 @import "font-awesome";
 @import "info";
+@import "delegate_actions";
 /* Global Styles */
 
 $brand_yellow: #FFAD00;
@@ -75,7 +76,7 @@ footer {
 
 .navbar{
 	margin-top: -60px;
-	background: rgba(0,0,0,0);
+	background: $brand_yellow;
 	box-shadow: none;
 	
 }
@@ -92,4 +93,8 @@ footer {
 #overlay img{
 	height: 50px;
 	width: 50px;
+}
+
+.navbar-fixed-top{
+    margin-top: 0px;
 }

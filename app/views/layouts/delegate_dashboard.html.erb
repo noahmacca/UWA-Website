@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>UW Apprentice | Innovate, Impact, Experience</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+    <!--<p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>-->
+
+    <!-- Static navbar -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+
+          <%= link_to "Apprentice", root_path, class: 'navbar-brand' %>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><%= link_to "Team", team_path %></li>
+            <li><%= link_to "Blog", "//google.com" %></li>
+
+            <% if delegate_signed_in? %>
+            <li><%= link_to "Logout", destroy_delegate_session_path, :method => :delete %></li>
+
+            <% else %>
+            <li><%= link_to "Login", new_delegate_session_path %></li>
+
+            <% end %>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container-fluid">
+     <div class="row">
+       <div class="col-sm-3 col-md-2 sidebar">
+        <ul class="nav nav-sidebar">
+          <li><%= link_to "Main", portal_path %></li>
+          <li><a href="javascript:;" data-toggle="collapse" data-target="#feedback">Feedback <%= fa_icon 'caret-down' %></a>
+            <ul id="feedback" class="collapse" style="list-style-type:none;">
+              <li>
+                <%= link_to "Received Feedback", feedbacks_path %>
+              </li>
+              <li>
+                <%= link_to "Give Feedback", new_feedback_path %>
+              </li>
+            </ul>
+          </li>
+          <li><%= link_to "Host Info", cases_path %></li>
+          <li><%= link_to "Delegates", all_delegates_path %></li>
+          <li><%= link_to "Profile", edit_delegate_registration_path %></li>
+
+        </ul>
+      </ul>
+    </div>
+    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">   
+      <%= yield %>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

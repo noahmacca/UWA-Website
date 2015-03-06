@@ -21,6 +21,6 @@ ActiveAdmin.register Case do
   end
 
 =end
-permit_params :title, :sponsor, :description, :done
+permit_params :title, :sponsor, :description, :done, :case_sponsor, :sponsor_logo
 
 end
