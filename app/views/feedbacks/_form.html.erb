@@ -12,26 +12,27 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :giver %><br>
-    <%= f.text_field :giver %>
+    <%= f.label :receiver %><br>
+    <%= f.text_area :receiver, class: "form-control" %>
   </div>
+
   <div class="field">
     <%= f.label :good_comments %><br>
-    <%= f.text_area :good_comments %>
+    <%= f.text_area :good_comments, class: "form-control" %>
   </div>
   <div class="field">
     <%= f.label :improvement_comments %><br>
-    <%= f.text_area :improvement_comments %>
+    <%= f.text_area :improvement_comments, class: "form-control"  %>
   </div>
   <div class="field">
     <%= f.label :leadership %><br>
-    <%= f.number_field :leadership %>
+    <%= f.number_field :leadership, class: "form-control", in: 1...11  %>
   </div>
   <div class="field">
     <%= f.label :creativity %><br>
-    <%= f.number_field :creativity %>
+    <%= f.number_field :creativity, class: "form-control", in: 1...11   %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Give Feedback", :class => 'btn btn-success'  %>
   </div>
 <% end %>

@@ -1,1 +1,35 @@
+<div class="container">
 <h1>All Delegates</h1>
+
+
+<% Delegate.all.each do |d| %>
+<div class="block-update-card">
+	<div class="update-card-body">
+		<h3><%= d.fullname %></h3>
+		<ul class="list-inline">
+			<li>
+
+			<% if d.facebook != nil %>
+				<%= link_to d.facebook, :target => '_blank', method: :put do %>
+				<%= fa_icon "facebook" %>
+				<% end %></li>
+
+<% end %>
+<% if d.twitter != nil %>
+				<li><%= link_to d.twitter, :target => '_blank', method: :put do %>
+					<%= fa_icon "twitter" %>
+					<% end %></li>
+
+<% end %>
+<% if d.linkedin != nil %>
+					<li><%= link_to d.linkedin, :target => '_blank', method: :put do %>
+						<%= fa_icon "linkedin" %>
+						<% end %></li>
+<% end %>
+					</ul>
+				</div>
+			</div>
+
+			<% end %>
+
+			</div>

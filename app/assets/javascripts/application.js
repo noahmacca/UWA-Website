@@ -36,6 +36,40 @@ $("#menu-close").click(function(e) {
     $(this).parent().toggleClass('active', !$(this).parent().hasClass('active'));
     $(this).next('.answer').slideToggle();
   });
+//Filter
+   $('#filterOptions li a').click(function() {
+    // fetch the class of the clicked item
+    var ourClass = $(this).attr('class');
+
+    // reset the active class on all the buttons
+    $('#filterOptions li').removeClass('active');
+    // update the active state on our clicked button
+    $(this).parent().addClass('active');
+
+    if(ourClass == 'all') {
+      // show all our items
+      $('#teamHolder').children('div.item').show();
+    }
+    else {
+      // hide all elements that don't share ourClass
+      $('#teamHolder').children('div:not(.' + ourClass + ')').hide();
+      // show all elements that do share ourClass
+      $('#teamHolder').children('div.' + ourClass).show();
+    }
+    return false;
+  });
+
+   // Image Hover
+   $("[rel='tooltip']").tooltip();    
+ 
+    $('.thumbnail').hover(
+        function(){
+            $(this).find('.caption').slideDown(250); //.fadeIn(250)
+        },
+        function(){
+            $(this).find('.caption').slideUp(250); //.fadeOut(205)
+        }
+    ); 
 
 
     };

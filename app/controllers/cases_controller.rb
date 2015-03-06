@@ -1,5 +1,6 @@
 class CasesController < ApplicationController
   before_action :set_case, only: [:show, :edit, :update, :destroy]
+ layout "delegate_dashboard"
 
   respond_to :html
 

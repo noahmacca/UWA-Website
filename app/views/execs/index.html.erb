@@ -1,31 +1,47 @@
-<h1>Listing execs</h1>
+<div class="container">
+<div class="row">
+    <center><h2>The Apprentice Team</h2>
+      <ul id="filterOptions" class="nav nav-pills" style="margin-left:150px;">
+        <li class="active"><a href="#" class="all">Full Team</a></li>
+        <li><a href="#" class="president">Presidents</a></li>
+        <li><a href="#" class="marketing">Marketing</a></li>
+      </ul>
 
-<table>
-  <thead>
-    <tr>
-      <th>Exec name</th>
-      <th>Team</th>
-      <th>Responsibilities</th>
-      <th>Program</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+      <div id="teamHolder">
+      <% @execs = Exec.all %>
 
-  <tbody>
-    <% @execs.each do |exec| %>
-      <tr>
-        <td><%= exec.exec_name %></td>
-        <td><%= exec.team %></td>
-        <td><%= exec.responsibilities %></td>
-        <td><%= exec.program %></td>
-        <td><%= link_to 'Show', exec %></td>
-        <td><%= link_to 'Edit', edit_exec_path(exec) %></td>
-        <td><%= link_to 'Destroy', exec, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+      <% @execs.each do |exec| %>
 
-<br>
+      <% if exec.team == "president" %>
+      <div class="item president col-sm-3" >
 
-<%= link_to 'New Exec', new_exec_path %>
+      <% else %>
+
+      <div class="item marketing col-sm-3" >
+
+      <% end %>
+        <div class="thumbnail">
+          <div class="caption">
+            <h4><%= exec.exec_name %></h4>
+            <p><%= exec.program %></p>
+            <p>Helping with: </p>
+            <ul>
+
+            <!-- split responsibilities "separated by commas" -->
+              <% exec.responsibilities.split(',').each do | r| %>
+              <li><%= r %></li>
+              <% end %>
+            </ul>
+            </div>
+            <%= image_tag(exec.picture, :class => 'img-responsive')%>
+          </div>
+          <h3><%= exec.exec_name %></h3>
+          <h4><%= exec.program %></h4>
+</div>
+
+        <% end %>
+</div>
+</center>
+</div>
+</center>
+</div>

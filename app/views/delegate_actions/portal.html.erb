@@ -80,10 +80,10 @@
                             <div class="panel-heading">
                                 <div class="row">
                                     <div class="col-xs-3">
-                                        <%= fa_icon "info 5x"%>
+                                        <%= fa_icon "comments 5x"%>
                                     </div>
                                     <div class="col-xs-9 text-right">
-                                        <div class="huge">4</div>
+                                        <div class="huge"><%= Feedback.where(:receiver => current_delegate).count %></div>
                                         <div>Feedback Received</div>
                                     </div>
                                 </div>

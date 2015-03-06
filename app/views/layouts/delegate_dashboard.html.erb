@@ -43,9 +43,20 @@
     <div class="container-fluid">
      <div class="row">
        <div class="col-sm-3 col-md-2 sidebar">
+       <div class="container">
         <ul class="nav nav-sidebar">
-          <li><%= link_to "Main", portal_path %></li>
-          <li><a href="javascript:;" data-toggle="collapse" data-target="#feedback">Feedback <%= fa_icon 'caret-down' %></a>
+          <li>
+          <div class="sidebar-item">
+
+          <%= fa_icon "tachometer" %> | 
+          <%= link_to "Main", portal_path %>
+          </div>
+          </li>
+          <li>
+<div class="sidebar-item">
+
+<%= fa_icon "comments" %> | 
+          <a href="javascript:;" data-toggle="collapse" data-target="#feedback">Feedback <%= fa_icon 'caret-down' %></a>
             <ul id="feedback" class="collapse" style="list-style-type:none;">
               <li>
                 <%= link_to "Received Feedback", feedbacks_path %>
@@ -54,13 +65,34 @@
                 <%= link_to "Give Feedback", new_feedback_path %>
               </li>
             </ul>
+            </div>
           </li>
-          <li><%= link_to "Host Info", cases_path %></li>
-          <li><%= link_to "Delegates", all_delegates_path %></li>
-          <li><%= link_to "Profile", edit_delegate_registration_path %></li>
+          <li>
+
+          <div class="sidebar-item">
+<%= fa_icon "info" %> | 
+          <%= link_to "Host Info", cases_path %>
+</div>
+          </li>
+
+          
+          <li>
+<div class="sidebar-item">
+<%= fa_icon "users" %> | 
+          <%= link_to "Delegates", all_delegates_path %>
+</div>
+          </li>
+          <li>
+<div class="sidebar-item">
+<%= fa_icon "user" %> | 
+          <%= link_to "Profile", edit_delegate_registration_path %>
+
+          </div>
+          </li>
 
         </ul>
       </ul>
+      </div>
     </div>
     <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">   
       <%= yield %>

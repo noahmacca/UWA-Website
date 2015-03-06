@@ -11,14 +11,14 @@
   </thead>
 
   <tbody>
-    <% @cases.each do |case| %>
+    <% @cases.each do |c| %>
       <tr>
-        <td><%= case.title %></td>
-        <td><%= case.sponsor %></td>
-        <td><%= case.description %></td>
-        <td><%= link_to 'Show', case %></td>
-        <td><%= link_to 'Edit', edit_case_path(case) %></td>
-        <td><%= link_to 'Destroy', case, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= c.title %></td>
+        <td><%= c.sponsor %></td>
+        <td><%= c.description %></td>
+        <td><%= link_to 'Show', c %></td>
+        <td><%= link_to 'Edit', edit_case_path(c) %></td>
+        <td><%= link_to 'Destroy', c, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
