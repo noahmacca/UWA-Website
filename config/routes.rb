@@ -9,5 +9,13 @@ Rails.application.routes.draw do
 
   devise_for :delegates
 
-  root to: 'info#home'
+
+  get '/team', to: 'execs#index'
+
+  # IF user session exists
+  authenticated :delegate do
+    root to: 'delegate_actions#portal', as: "authenticated_root"
+  end
+    root to: 'info#home'
+
 end

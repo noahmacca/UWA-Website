@@ -1,15 +1,73 @@
 <!DOCTYPE html>
-<html ng-app>
+<html>
 <head>
-  <title>UwaWebsite</title>
+  <title>UW Apprentice | Innovate, Impact, Experience</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    <!--<p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>-->
+
+ <!-- Static navbar -->
+    <nav class="navbar navbar-default navbar-static-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+
+          <%= link_to "Apprentice", root_path, class: 'navbar-brand' %>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><%= link_to "Team", team_path %></li>
+            <li><%= link_to "Blog", "//google.com" %></li>
+
+            <% if delegate_signed_in? %>
+<li><%= link_to "Logout", destroy_delegate_session_path, :method => :delete %></li>
+
+<% else %>
+            <li><%= link_to "Login", new_delegate_session_path %></li>
+
+            <% end %>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
 <%= yield %>
+
+
+    <!-- Footer -->
+    <footer style="background-color:#FFAD00">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 col-lg-offset-1 text-center">
+                    <h4><strong>UW Apprentice</strong>
+                    </h4>
+                    <ul class="list-inline">
+                        <li>
+                        <%= link_to "https://www.facebook.com/uwapprentice", method: :put do %>
+             			 <%= fa_icon "facebook 2x" %>
+              <% end %></li>
+
+              <li><%= link_to "https://twitter.com/UWApprentice", method: :put do %>
+              <%= fa_icon "twitter 2x" %>
+              <% end %></li>
+
+              <li><%= mail_to "uwaterlooapprentice@gmail.com", method: :put do %>
+              <%= fa_icon "envelope 2x" %>
+              <% end %></li>
+ 
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
 
 </body>
 </html>

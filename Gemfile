@@ -30,6 +30,10 @@ gem 'devise'
 
 gem 'activeadmin', github: 'activeadmin'
 
-gem 'angularjs-rails'
-
 gem 'activerecord-reputation-system'
+
+gem 'bootstrap-sass', '~> 3.2.0'
+
+gem 'bootswatch-rails'
+
+gem "font-awesome-rails"

@@ -12,6 +12,33 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require bootstrap-sprockets
 //= require turbolinks
-//= require angular
 //= require_tree .
+
+var ready;
+ready = function() {
+
+// Menu
+$("#menu-close").click(function(e) {
+        e.preventDefault();
+        $("#sidebar-wrapper").toggleClass("active");
+    });
+    // Opens the sidebar menu
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#sidebar-wrapper").toggleClass("active");
+    });
+
+// FAQs
+   $('#faq a.title').click(function(e) {
+    e.preventDefault();
+    $(this).parent().toggleClass('active', !$(this).parent().hasClass('active'));
+    $(this).next('.answer').slideToggle();
+  });
+
+
+    };
+
+$(document).ready(ready);
+$(document).on('page:load', ready);
