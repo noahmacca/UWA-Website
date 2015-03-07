@@ -37,3 +37,7 @@ gem 'bootstrap-sass', '~> 3.2.0'
 gem 'bootswatch-rails'
 
 gem "font-awesome-rails"
+
+gem "chartkick"
+
+gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"

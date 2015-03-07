@@ -16,4 +16,5 @@ ActiveAdmin.register Delegate do
 
 permit_params :fullname, :email, :groups
 
+
 end

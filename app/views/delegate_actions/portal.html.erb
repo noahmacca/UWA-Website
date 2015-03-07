@@ -13,6 +13,11 @@
 
 <% end %>
 
+
+<% @num_finished_cases = Case.where(:case_sponsor => true).where(:done => true).count %>
+
+<% @num_finished_cases = @num_finished_cases = 0 ? -1 : @num_finished_cases %>
+
 <h2>Overview</h2>
     <div class="row">
 
@@ -25,7 +30,7 @@
                                         <%= fa_icon "bar-chart 5x" %>
                                     </div>
                                     <div class="col-xs-9 text-right">
-                                        <div class="huge">1800</div>
+                                        <div class="huge"><%= current_delegate.total_score %></div>
                                         <div>Total Score</div>
                                     </div>
                                 </div>
@@ -42,11 +47,13 @@
                             <div class="panel-heading">
                                 <div class="row">
                                     <div class="col-xs-3">
-                                        <%= fa_icon "trophy 5x" %>
+                                        <%= fa_icon "diamond 5x" %>
                                     </div>
                                     <div class="col-xs-9 text-right">
-                                        <div class="huge">Yes</div>
-                                        <div>Top Three!</div>
+
+                                        <div class="huge">fadsf dfds fdfd</div>
+
+                                        <div>Groups</div>
                                     </div>
                                 </div>
                             </div>
@@ -64,7 +71,8 @@
                                         <%= fa_icon "exclamation 5x"%>
                                     </div>
                                     <div class="col-xs-9 text-right">
-                                        <div class="huge">1</div>
+
+                                        <div class="huge"><%= Delegate.pending_feedback(current_delegate) %></div>
                                         <div>Pending Feedback</div>
                                     </div>
                                 </div>
@@ -83,7 +91,7 @@
                                         <%= fa_icon "comments 5x"%>
                                     </div>
                                     <div class="col-xs-9 text-right">
-                                        <div class="huge"><%= Feedback.where(:receiver => current_delegate).count %></div>
+                                        <div class="huge"><%= Delegate.received_feedback(current_delegate) %></div>
                                         <div>Feedback Received</div>
                                     </div>
                                 </div>
@@ -100,7 +108,7 @@
 <% Case.where(:case_sponsor => true).each do |c| %>
 
 <%= link_to case_path(c) do %>
-<div class="col-md-3">
+<div class="col-md-2">
 
 <%= image_tag(c.sponsor_logo, :class => 'img-responsive') %>
 <h4><%= c.sponsor%></h4>
@@ -109,17 +117,122 @@
 <% end %>
 
 <% end %>
+
+<%= link_to case_winners_path do %>
+<div class="col-md-2">
+<%= image_tag("http://placehold.it/300x300", :class => 'img-responsive') %>
+<h4> Case Winners </h4>
+</div>
+<% end %>
+
 </div>
 
 <hr>
 
 <div id="analytics">
-<h2>Personal Analytics (placeholders nothing til confirmation)</h2>
+<h2>Personal Analytics</h2>
 
 <div class="col-md-6">
-<%= image_tag("http://placehold.it/500x500", :class => 'img-responsive') %>
+<div id="individual_attributes_chart" style="width:100%;height:100%;"></div> 
 </div>
 <div class="col-md-6">
-<%= image_tag("http://placehold.it/500x500", :class => 'img-responsive') %>
+<div id="case_attributes_chart" style="width:100%;height:100%;"></div> </div>
 </div>
-</div>
+
+
+
+<!-- GBTT Put this in JS -->
+<script type="text/javascript" charset="utf-8">
+
+$(function(){
+    new Highcharts.Chart({
+
+        chart:{
+            renderTo: "individual_attributes_chart",
+            type: "spline"
+        },
+
+        title:{
+            text: "Your Attributes"
+        },
+
+        xAxis:{
+            categories: ["Leadership", "Creativity", "Business Sense", "Presentation", "Contribution"]
+        },
+
+        yAxis:{
+            text: "Score",
+            min: 0,
+            max: 10,
+            gridLineColor: 'transparent',
+            title: {
+                text: 'Score'
+            }
+        },
+        credits: {
+      enabled: false
+  },
+
+        series:[{
+            name: "Current",
+            data: [<%= current_delegate.leadership / @num_finished_cases %>, <%= current_delegate.creativity / @num_finished_cases %>, <%= current_delegate.business_sense / @num_finished_cases%>, <%= current_delegate.presentation / @num_finished_cases%>,<%= current_delegate.communication / @num_finished_cases %>]
+        }, {name: "Estimation",
+ data: [<%= current_delegate.estimated_leadership / @num_finished_cases %>, <%= current_delegate.estimated_creativity / @num_finished_cases %>, <%= current_delegate.estimated_business_sense / @num_finished_cases %>, <%= current_delegate.estimated_presentation / @num_finished_cases%>,<%= current_delegate.estimated_communication / @num_finished_cases %>]},
+
+ {name: "Top Three",
+ data: [<%= Delegate.avg_top_x('leadership', 3) %>,<%= Delegate.avg_top_x('creativity', 3) %>,<%= Delegate.avg_top_x('business_sense', 3) %>,
+ <%= Delegate.avg_top_x('presentation', 3) %>,<%= Delegate.avg_top_x('communication', 3) %>]
+},
+ {name: "Top Seven",
+ data: [<%= Delegate.avg_top_x('leadership', 7) %>,<%= Delegate.avg_top_x('creativity', 7) %>,<%= Delegate.avg_top_x('business_sense', 7) %>,
+ <%= Delegate.avg_top_x('presentation', 7) %>,<%= Delegate.avg_top_x('communication', 7) %>]
+}]
+
+    });
+
+});
+
+</script>
+
+
+<script type="text/javascript" charset="utf-8">
+
+$(function(){
+    new Highcharts.Chart({
+
+        chart:{
+            renderTo: "case_attributes_chart",
+            type: "spline"
+        },
+
+        title:{
+            text: "Case Attributes"
+        },
+
+        xAxis:{
+            categories: ["Impact", "Feasibility", "Innovation", "Presentation", "Overall"]
+        },
+
+        yAxis:{
+            text: "Score",
+            min: 0,
+            max: 10,
+            gridLineColor: 'transparent',
+            title: {
+                text: 'Score'
+            }
+        },
+        credits: {
+      enabled: false
+  },
+
+        series:[{
+            name: "Current",
+            data: [<%= current_delegate.case_impact / @num_finished_cases %>, <%= current_delegate.case_feasibility / @num_finished_cases %>, <%= current_delegate.case_innovation / @num_finished_cases%>, <%= current_delegate.case_presentation / @num_finished_cases %>,<%= current_delegate.case_overall /  @num_finished_cases%>]
+        }]
+
+    });
+
+});
+
+</script>

@@ -21,6 +21,12 @@ class CasesController < ApplicationController
   def edit
   end
 
+  def winners
+  end
+
+  def hosts
+  end
+
   def create
     @case = Case.new(case_params)
     @case.save

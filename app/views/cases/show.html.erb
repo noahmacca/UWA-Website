@@ -1,19 +1,15 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @case.title %>
-</p>
 
-<p>
-  <strong>Sponsor:</strong>
-  <%= @case.sponsor %>
-</p>
+<h2><%= @case.sponsor %> Case: <%= @case.title %></h2>
 
-<p>
-  <strong>Description:</strong>
-  <%= @case.description %>
-</p>
+<p>  <%= @case.description %></p>
 
 <%= link_to 'Edit', edit_case_path(@case) %> |
 <%= link_to 'Back', cases_path %>
+
+
+<p> Submit Case
+<%= form_for @case, :url => cases_path, :html => { :multipart => true } do |form| %>
+  <%= form.file_field :document %>
+<% end %></p>

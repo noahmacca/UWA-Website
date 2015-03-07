@@ -21,4 +21,9 @@ Rails.application.routes.draw do
     get '/portal', to: 'delegate_actions#portal'
 
     get '/all_delegates', to: 'delegate_actions#all_delegates'
+
+    #GBTT: Consistent routing
+    get '/case_winners', to: 'cases#winners'
+
+    get '/hosts', to: 'cases#hosts'
 end

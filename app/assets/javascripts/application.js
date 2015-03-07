@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require bootstrap-sprockets
 //= require turbolinks
+//= require highcharts
 //= require_tree .
 
 var ready;
@@ -70,6 +71,8 @@ $("#menu-close").click(function(e) {
             $(this).find('.caption').slideUp(250); //.fadeOut(205)
         }
     ); 
+
+
 
 
     };

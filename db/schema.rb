@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150306074537) do
+ActiveRecord::Schema.define(version: 20150307130526) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -52,18 +52,22 @@ ActiveRecord::Schema.define(version: 20150306074537) do
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "done",         default: false
+    t.boolean  "done",                  default: false
     t.string   "sponsor_logo"
-    t.boolean  "case_sponsor", default: false
+    t.boolean  "case_sponsor",          default: false
+    t.string   "document_file_name"
+    t.string   "document_content_type"
+    t.integer  "document_file_size"
+    t.datetime "document_updated_at"
   end
 
   create_table "delegates", force: true do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
+    t.string   "email",                    default: "",  null: false
+    t.string   "encrypted_password",       default: "",  null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",            default: 0,   null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -76,6 +80,27 @@ ActiveRecord::Schema.define(version: 20150306074537) do
     t.string   "linkedin"
     t.string   "facebook"
     t.string   "twitter"
+    t.integer  "presentation",             default: 0
+    t.integer  "leadership",               default: 0
+    t.integer  "business_sense",           default: 0
+    t.integer  "communication",            default: 0
+    t.integer  "creativity",               default: 0
+    t.integer  "case_wins",                default: 0
+    t.decimal  "total_score",              default: 0.0
+    t.integer  "estimated_leadership",     default: 0
+    t.integer  "estimated_business_sense", default: 0
+    t.integer  "estimated_communication",  default: 0
+    t.integer  "estimated_creativity",     default: 0
+    t.integer  "estimated_presentation",   default: 0
+    t.integer  "case_impact",              default: 0
+    t.integer  "case_feasibility",         default: 0
+    t.integer  "case_innovation",          default: 0
+    t.integer  "case_presentation",        default: 0
+    t.integer  "case_overall",             default: 0
+    t.integer  "case_one_score",           default: 0
+    t.integer  "case_two_score",           default: 0
+    t.integer  "case_three_score",         default: 0
+    t.integer  "case_four_score",          default: 0
   end
 
   add_index "delegates", ["email"], name: "index_delegates_on_email", unique: true
