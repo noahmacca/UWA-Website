@@ -1,4 +1,4 @@
-ActiveAdmin.register Delegate do
+ActiveAdmin.register Itinerary do
 
 
   # See permitted parameters documentation:
@@ -14,7 +14,6 @@ ActiveAdmin.register Delegate do
   #   permitted
   # end
 
-permit_params :fullname, :email, :groups, :linkedin, :facebook, :twitter, :presentation, :business_sense, :communication, :creativity, :delegate_program
-
+permit_params :item, :item_time, :day, :item_time_end
 
 end

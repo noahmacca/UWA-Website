@@ -7,7 +7,7 @@
             <h3>Apprentice Is The Premier Case Competition For Waterloo's Most Innovative Students</h3>
             <br>
 
-            <%= button_to "Login", new_delegate_session_path, class: 'btn btn-success'%>
+            <%= button_tag "Login", class: 'btn btn-success', :'data-toggle' => 'modal', :'data-target' => '#loginModal'%>
 
             <ul class="list-inline" style="padding-top:60px;">
                         <li>
@@ -175,51 +175,45 @@
         	<h2>Schedule</h2>
 
         	<div class="col-md-4">
+
         	<h3>Friday</h3>
-        	<h4>Sign In</h4>
-        	<h5>5:00 - 5:30pm</h5>
 
-        	<h4>Dinner</h4>
-        	<h5>5:30 - 6:30pm</h5>
+          <% Itinerary.where(:day => 'friday').order(item_time: :desc).each do |i| %>
 
-        	<h4>Presentation</h4>
-        	<h5>6:30 - 8:00pm</h5>
+          <h4><%= i.item %></h4>
 
-        	<h4>Desserts and Ice Breakers</h4>
-        	<h5>8:00 - 9:30pm</h5>
-        	</div>
+          <!-- Get time from db format it right and remove leading zero -->
+          <h5><%= Time.strptime(i.item_time.to_s(:time), "%H:%M").strftime("%I:%M%P")[1..-1] %>
+          - <%= Time.strptime(i.item_time_end.to_s(:time), "%H:%M").strftime("%I:%M%P")[1..-1] %></h5>
+          <% end %>
 
+          </div>
         	<div class="col-md-4">
         	<h3>Saturday</h3>
-        	<h4>Case 1</h4>
-        	<h5>8:00am - 12pm</h5>
 
-        	<h4>Lunch</h4>
-        	<h5>12:00 - 1:00pm</h5>
+          <% Itinerary.where(:day => 'saturday').order(item_time: :desc).each do |i| %>
 
-        	<h4>Case 2</h4>
-        	<h5>1:00 - 5:00pm</h5>
+          <h4><%= i.item %></h4>
 
-        	<h4>Dinner</h4>
-        	<h5>5:00 - 5:45pm</h5>
-        	</div>
+          <!-- Get time from db format it right and remove leading zero -->
+          <h5><%= Time.strptime(i.item_time.to_s(:time), "%H:%M").strftime("%I:%M%P")[1..-1] %>
+          - <%= Time.strptime(i.item_time_end.to_s(:time), "%H:%M").strftime("%I:%M%P")[1..-1] %></h5>
 
+          <% end %>
+</div>
         	<div class="col-md-4">
         	<h3>Sunday</h3>
-        	<h4>Case 3</h4>
-        	<h5>8:00am - 12pm</h5>
+        	 <% Itinerary.where(:day => 'sunday').order(item_time: :desc).each do |i| %>
 
-        	<h4>Lunch</h4>
-        	<h5>12:00 - 1:00pm</h5>
+          <h4><%= i.item %></h4>
 
-        	<h4>Case 4</h4>
-        	<h5>1:00 - 5:00pm</h5>
+          <!-- Get time from db format it right and remove leading zero -->
+          <h5><%= Time.strptime(i.item_time.to_s(:time), "%H:%M").strftime("%I:%M%P")[1..-1] %>
+          - <%= Time.strptime(i.item_time_end.to_s(:time), "%H:%M").strftime("%I:%M%P")[1..-1] %></h5>
 
-        	<h4>Closing Ceremy</h4>
-        	<h5>5:30 - 8:30pm</h5>
-        	</div>
+          <% end %>
+</div>
 
-        </div>
         </div>
         </section>
 
@@ -276,3 +270,37 @@
         </div>
         </div>
         </section>
+
+
+
+        <div class="modal fade" id="loginModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Login</h4>
+      </div>
+  <div class="modal-body">
+
+  <%= simple_form_for(:delegate, :url => delegate_session_path) do |f| %>
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true, class: 'form-control' %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password %><br />
+    <%= f.password_field :password, autocomplete: "off", class: 'form-control' %>
+  </div>
+<div class="modal-footer">
+  <div class="actions">
+    <%= f.submit "Login", :class => 'btn btn-success' %>
+  </div>
+  <% end %>
+
+  </div>
+  </div>
+
+</div>
+</div>
+</div>
