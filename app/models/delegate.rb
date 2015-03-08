@@ -95,6 +95,31 @@ class Delegate < ActiveRecord::Base
   end
 
 
+  #################
+  ### Summary of Plot inputs/outputs
+  #################
+
+  # Plot 1
+  # average_delegate_attribute_scores(d_id)
+  # # the function here
+  # return average_delegate_attribute_scores[avg_leadership, avg_creativity, avg_business_sense, avg_presentation_skills, avg_overall_contributions]
+  
+  # Plot 2
+  # self.average_case_eval_scores(d_id)
+  # # the function here
+  # return average_case_eval_scores[avg_impact, avg_feasibility, avg_innovation, avg_presentation, avg_overall]
+  
+  # Plot 3
+  # total_points_by_source(d_id)
+  # # the function here
+  # return total_points_by_source_output[peer scores, exec scores, case eval scores, case pos scores]
+
+  # Plot 4
+  # total_points_by_case(d_id, case_num)
+  # # the function here
+  # return total_points_by_case_output[casex_peer, casex_exec, casex_caseeval, casex_casepos]
+
+
   ###############
   ### Old functions are below
   ###############
