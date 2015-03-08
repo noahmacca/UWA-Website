@@ -9,11 +9,11 @@ class Delegate < ActiveRecord::Base
 
   @num_finished_cases = Case.where(:case_sponsor => true).where(:done => true).count 
   
-  @Peer_Evals_Weight = 2
-  @Exec_Evals_Weight = 3
-  @Case_Evals_Weight = 1.5
+  @peer_evals_weight = 2
+  @exec_evals_weight = 3
+  @case_evals_weight = 1.5
   @case_pos_weight = 3.5
-
+  @raw_max = 50
 
   ###############
   ### Update average scores. Scores will come from forms that execs and delegates interact with.
@@ -103,6 +103,12 @@ class Delegate < ActiveRecord::Base
   # # the function here
   # return average_delegate_attribute_scores[avg_leadership, avg_creativity, avg_business_sense, avg_presentation_skills, avg_overall_contributions]
   
+  def self.average_delegate_attribute_scores(d_id)
+
+
+  end
+
+
   # Plot 2
   # self.average_case_eval_scores(d_id)
   # # the function here
@@ -171,6 +177,20 @@ class Delegate < ActiveRecord::Base
 
      # case_scores[]
 
+  end
+
+  # This shold return max scores in form: [peer_evals, exec_evals, case_eval, case_position]
+
+  def self.max_values
+
+    scores = [0,0,0,0]
+
+    scores[0] = @raw_max * @peer_evals_weight * @num_finished_cases
+    scores[1] = @raw_max * @exec_evals_weight * @num_finished_cases
+    scores[2] = @raw_max * @case_evals_weight * @num_finished_cases
+    scores[3] = @raw_max * @case_pos_weight * @num_finished_cases
+
+    return scores
   end
 
 
