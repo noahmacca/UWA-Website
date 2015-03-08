@@ -21,7 +21,10 @@
             <span class="icon-bar"></span>
           </button>
 
-          <%= link_to "Apprentice", root_path, class: 'navbar-brand' %>
+          <%= link_to root_path do |l| %>
+          <%= image_tag("logo.png", class: 'navbar-brand', :style => 'height:100px;width:100px') %>
+
+          <% end %>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
@@ -69,5 +72,36 @@
         </div>
     </footer>
 
+        <div class="modal fade" id="loginModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Login</h4>
+      </div>
+  <div class="modal-body">
+
+  <%= simple_form_for(:delegate, :url => delegate_session_path) do |f| %>
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true, class: 'form-control' %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password %><br />
+    <%= f.password_field :password, autocomplete: "off", class: 'form-control' %>
+  </div>
+<div class="modal-footer">
+  <div class="actions">
+    <%= f.submit "Login", :class => 'btn btn-success' %>
+  </div>
+  <% end %>
+
+  </div>
+  </div>
+
+</div>
+</div>
+</div>
 </body>
 </html>

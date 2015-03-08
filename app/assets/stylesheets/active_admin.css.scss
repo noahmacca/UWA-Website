@@ -27,3 +27,8 @@ $brand_yellow: #FFAD00;
 a, .site_title{
 	color: black !important;
 }
+// Then bootstrap itself
+@import "bootstrap";
+
+
+@import "bootswatch/paper/bootswatch";

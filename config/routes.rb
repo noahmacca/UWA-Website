@@ -26,4 +26,8 @@ Rails.application.routes.draw do
     get '/case_winners', to: 'cases#winners'
 
     get '/hosts', to: 'cases#hosts'
+
+    get '/itinerary', to: 'info#itinerary'
+
+    get '/faqs', to: 'info#faq'
 end

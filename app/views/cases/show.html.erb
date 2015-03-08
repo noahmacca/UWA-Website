@@ -1,15 +1,40 @@
 <p id="notice"><%= notice %></p>
 
+<div class="container">
 
-<h2><%= @case.sponsor %> Case: <%= @case.title %></h2>
+<div class="col-lg-12">
+<div class="col-md-2">
+<%= link_to cases_path do |c| %>
+<%= fa_icon "arrow-left 2x"%>
+<% end %>
+</div>
 
+<div class="col-md-8">
+<h2 class="text-center"><%= @case.sponsor %> Case: <%= @case.title %></h2>
+</div>
+<div class="col-md-2">
+
+ 
+
+<div style="box-shadow: 0px 0px 5px #fff;">
+<%= link_to feedbacks_path do |c| %>
+
+Submit Feedback
+<%= fa_icon "arrow-right 2x", class: 'float-right'%>
+<% end %>
+</div>
+
+
+
+</div>
+</div>
+<div class="row">
 <p>  <%= @case.description %></p>
 
-<%= link_to 'Edit', edit_case_path(@case) %> |
-<%= link_to 'Back', cases_path %>
 
-
-<p> Submit Case
+<h4> Submit Case</h4>
 <%= form_for @case, :url => cases_path, :html => { :multipart => true } do |form| %>
   <%= form.file_field :document %>
-<% end %></p>
+<% end %>
+</div>
+</div>

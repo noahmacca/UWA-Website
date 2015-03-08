@@ -1,0 +1,44 @@
+<div class="col-lg-12 text-center">
+	<h2>Schedule</h2>
+
+	<div class="col-md-4">
+
+		<h3>Friday</h3>
+
+		<% Itinerary.where(:day => 'friday').order(item_time: :desc).each do |i| %>
+
+		<h4><%= i.item %></h4>
+
+		<!-- Get time from db format it right and remove leading zero -->
+		<h5><%= Time.strptime(i.item_time.to_s(:time), "%H:%M").strftime("%I:%M%P")[1..-1] %>
+			- <%= Time.strptime(i.item_time_end.to_s(:time), "%H:%M").strftime("%I:%M%P")[1..-1] %></h5>
+			<% end %>
+
+		</div>
+		<div class="col-md-4">
+			<h3>Saturday</h3>
+
+			<% Itinerary.where(:day => 'saturday').order(item_time: :desc).each do |i| %>
+
+			<h4><%= i.item %></h4>
+
+			<!-- Get time from db format it right and remove leading zero -->
+			<h5><%= Time.strptime(i.item_time.to_s(:time), "%H:%M").strftime("%I:%M%P")[1..-1] %>
+				- <%= Time.strptime(i.item_time_end.to_s(:time), "%H:%M").strftime("%I:%M%P")[1..-1] %></h5>
+
+				<% end %>
+			</div>
+			<div class="col-md-4">
+				<h3>Sunday</h3>
+				<% Itinerary.where(:day => 'sunday').order(item_time: :desc).each do |i| %>
+
+				<h4><%= i.item %></h4>
+
+				<!-- Get time from db format it right and remove leading zero -->
+				<h5><%= Time.strptime(i.item_time.to_s(:time), "%H:%M").strftime("%I:%M%P")[1..-1] %>
+					- <%= Time.strptime(i.item_time_end.to_s(:time), "%H:%M").strftime("%I:%M%P")[1..-1] %></h5>
+
+					<% end %>
+				</div>
+
+			</div>

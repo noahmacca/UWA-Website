@@ -1,5 +1,6 @@
 class FeedbacksController < ApplicationController
 before_action :set_feedback, only: [:show, :edit, :update, :destroy]
+before_action :authenticate_executive!, only: [:edit, :index, :update, :destroy]
 
  layout "delegate_dashboard"
 
@@ -48,5 +49,12 @@ before_action :set_feedback, only: [:show, :edit, :update, :destroy]
     def feedback_params
       params.require(:feedback).permit(:giver, :good_comments, :improvement_comments, :leadership, :creativity)
     end
+
+    # Don't allow delegates to access what they're not supposed to
+    def authenticate_executive!
+      if not current_admin_user
+        raise ActionController::RoutingError.new('Not Found')
+    end
+  end
 end
 
