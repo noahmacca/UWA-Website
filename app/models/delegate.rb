@@ -60,9 +60,9 @@ class Delegate < ActiveRecord::Base
     # Array keeping scores of c1...c4
     case_scores = [0,0,0,0]
 
-    if (@num_finished_cases == 1)
+    #if (@num_finished_cases == 1)
 
-      case_scores[]
+     # case_scores[]
 
 
   end
