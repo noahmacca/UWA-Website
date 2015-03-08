@@ -94,7 +94,6 @@ class Delegate < ActiveRecord::Base
     end
   end
 
-
   #################
   ### Summary of Plot inputs/outputs
   #################
