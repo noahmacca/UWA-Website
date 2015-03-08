@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150307222500) do
+ActiveRecord::Schema.define(version: 20150308112234) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -62,12 +62,12 @@ ActiveRecord::Schema.define(version: 20150307222500) do
   end
 
   create_table "delegates", force: true do |t|
-    t.string   "email",                    default: "",  null: false
-    t.string   "encrypted_password",       default: "",  null: false
+    t.string   "email",                           default: "",  null: false
+    t.string   "encrypted_password",              default: "",  null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",            default: 0,   null: false
+    t.integer  "sign_in_count",                   default: 0,   null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -80,28 +80,91 @@ ActiveRecord::Schema.define(version: 20150307222500) do
     t.string   "linkedin"
     t.string   "facebook"
     t.string   "twitter"
-    t.integer  "presentation",             default: 0
-    t.integer  "leadership",               default: 0
-    t.integer  "business_sense",           default: 0
-    t.integer  "communication",            default: 0
-    t.integer  "creativity",               default: 0
-    t.integer  "case_wins",                default: 0
-    t.decimal  "total_score",              default: 0.0
-    t.integer  "estimated_leadership",     default: 0
-    t.integer  "estimated_business_sense", default: 0
-    t.integer  "estimated_communication",  default: 0
-    t.integer  "estimated_creativity",     default: 0
-    t.integer  "estimated_presentation",   default: 0
-    t.integer  "case_impact",              default: 0
-    t.integer  "case_feasibility",         default: 0
-    t.integer  "case_innovation",          default: 0
-    t.integer  "case_presentation",        default: 0
-    t.integer  "case_overall",             default: 0
-    t.integer  "case_one_score",           default: 0
-    t.integer  "case_two_score",           default: 0
-    t.integer  "case_three_score",         default: 0
-    t.integer  "case_four_score",          default: 0
+    t.integer  "case_wins",                       default: 0
+    t.decimal  "total_score",                     default: 0.0
+    t.integer  "case_one_score",                  default: 0
+    t.integer  "case_two_score",                  default: 0
+    t.integer  "case_three_score",                default: 0
+    t.integer  "case_four_score",                 default: 0
     t.string   "delegate_program"
+    t.integer  "num_complete_cases",              default: 0
+    t.decimal  "estimated_overall_contribution",  default: 0.0
+    t.decimal  "estimated_leadership",            default: 0.0
+    t.decimal  "estimated_business_sense",        default: 0.0
+    t.decimal  "estimated_creativity",            default: 0.0
+    t.decimal  "estimated_presentation_skills",   default: 0.0
+    t.decimal  "case1_peer_leadership",           default: 0.0
+    t.decimal  "case1_peer_creativity",           default: 0.0
+    t.decimal  "case1_peer_business_sense",       default: 0.0
+    t.decimal  "case1_peer_presentation_skills",  default: 0.0
+    t.decimal  "case1_peer_overall_contribution", default: 0.0
+    t.decimal  "case1_exec_leadership",           default: 0.0
+    t.decimal  "case1_exec_creativity",           default: 0.0
+    t.decimal  "case1_exec_business_sense",       default: 0.0
+    t.decimal  "case1_exec_presentation_skills",  default: 0.0
+    t.decimal  "case1_exec_overall_contribution", default: 0.0
+    t.integer  "case1_num_peer_evals",            default: 0
+    t.integer  "case1_num_exec_evals",            default: 0
+    t.decimal  "case2_peer_leadership",           default: 0.0
+    t.decimal  "case2_peer_creativity",           default: 0.0
+    t.decimal  "case2_peer_business_sense",       default: 0.0
+    t.decimal  "case2_peer_presentation_skills",  default: 0.0
+    t.decimal  "case2_peer_overall_contribution", default: 0.0
+    t.decimal  "case2_exec_leadership",           default: 0.0
+    t.decimal  "case2_exec_creativity",           default: 0.0
+    t.decimal  "case2_exec_business_sense",       default: 0.0
+    t.decimal  "case2_exec_presentation_skills",  default: 0.0
+    t.decimal  "case2_exec_overall_contribution", default: 0.0
+    t.integer  "case2_num_peer_evals",            default: 0
+    t.integer  "case2_num_exec_evals",            default: 0
+    t.decimal  "case3_peer_leadership",           default: 0.0
+    t.decimal  "case3_peer_creativity",           default: 0.0
+    t.decimal  "case3_peer_business_sense",       default: 0.0
+    t.decimal  "case3_peer_presentation_skills",  default: 0.0
+    t.decimal  "case3_peer_overall_contribution", default: 0.0
+    t.decimal  "case3_exec_leadership",           default: 0.0
+    t.decimal  "case3_exec_creativity",           default: 0.0
+    t.decimal  "case3_exec_business_sense",       default: 0.0
+    t.decimal  "case3_exec_presentation_skills",  default: 0.0
+    t.decimal  "case3_exec_overall_contribution", default: 0.0
+    t.integer  "case3_num_peer_evals",            default: 0
+    t.integer  "case3_num_exec_evals",            default: 0
+    t.decimal  "case4_peer_leadership",           default: 0.0
+    t.decimal  "case4_peer_creativity",           default: 0.0
+    t.decimal  "case4_peer_business_sense",       default: 0.0
+    t.decimal  "case4_peer_presentation_skills",  default: 0.0
+    t.decimal  "case4_peer_overall_contribution", default: 0.0
+    t.decimal  "case4_exec_leadership",           default: 0.0
+    t.decimal  "case4_exec_creativity",           default: 0.0
+    t.decimal  "case4_exec_business_sense",       default: 0.0
+    t.decimal  "case4_exec_presentation_skills",  default: 0.0
+    t.decimal  "case4_exec_overall_contribution", default: 0.0
+    t.integer  "case4_num_peer_evals",            default: 0
+    t.integer  "case4_num_exec_evals",            default: 0
+    t.decimal  "case1_impact",                    default: 0.0
+    t.decimal  "case1_feasibility",               default: 0.0
+    t.decimal  "case1_innovation",                default: 0.0
+    t.decimal  "case1_presentation",              default: 0.0
+    t.decimal  "case1_overall",                   default: 0.0
+    t.decimal  "case2_impact",                    default: 0.0
+    t.decimal  "case2_feasibility",               default: 0.0
+    t.decimal  "case2_innovation",                default: 0.0
+    t.decimal  "case2_presentation",              default: 0.0
+    t.decimal  "case2_overall",                   default: 0.0
+    t.decimal  "case3_impact",                    default: 0.0
+    t.decimal  "case3_feasibility",               default: 0.0
+    t.decimal  "case3_innovation",                default: 0.0
+    t.decimal  "case3_presentation",              default: 0.0
+    t.decimal  "case3_overall",                   default: 0.0
+    t.decimal  "case4_impact",                    default: 0.0
+    t.decimal  "case4_feasibility",               default: 0.0
+    t.decimal  "case4_innovation",                default: 0.0
+    t.decimal  "case4_presentation",              default: 0.0
+    t.decimal  "case4_overall",                   default: 0.0
+    t.integer  "case1_eval_count",                default: 0
+    t.integer  "case2_eval_count",                default: 0
+    t.integer  "case3_eval_count",                default: 0
+    t.integer  "case4_eval_count",                default: 0
   end
 
   add_index "delegates", ["email"], name: "index_delegates_on_email", unique: true
