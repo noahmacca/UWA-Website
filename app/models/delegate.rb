@@ -94,6 +94,7 @@ class Delegate < ActiveRecord::Base
     end
   end
 
+
   ###############
   ### Old functions are below
   ###############
@@ -120,20 +121,17 @@ class Delegate < ActiveRecord::Base
       top_x.each do |t|
 
         sum += t[criteria_sym]
-  
-  	end
+      end
 
   	sum / x
 
     else
     	Delegate.first[criteria_sym]
+    end
 
   end
 
-  end
-
-  def self.conference_score
-
+  def self.conference_score()
   end
 
   def self.case_eval_score(impact, feasibility, innovation, presentation, overall)
@@ -148,7 +146,6 @@ class Delegate < ActiveRecord::Base
     #if (@num_finished_cases == 1)
 
      # case_scores[]
-
 
   end
 
