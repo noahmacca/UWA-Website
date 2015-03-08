@@ -16,7 +16,7 @@ class Delegate < ActiveRecord::Base
 
 
   ###############
-  ### Add scores to each of the arrays. Scores will come from forms that execs and delegates interact with
+  ### Update average scores. Scores will come from forms that execs and delegates interact with.
   ###############
 
   # Update Peer and Exec Evaluation Scores
@@ -43,9 +43,9 @@ class Delegate < ActiveRecord::Base
     dacount = ("case" + case_id.to_s + "_num_" + source + "_evals").parameterize.underscore.to_sym
     
     # Need to track the counts to update the averages appropriately
-    ### NOTE Not sure if .to_decimal is a valid command. 
+    ### NOTE Not sure if .to_f is a valid command. 
     #     Need to do this because we're using it to multiply the old average, which is a decimal
-    old_eval_count = temp_delegate.dacount.to_decimal
+    old_eval_count = temp_delegate.dacount.to_f
     temp_delegate.dacount += 1
 
     # Calculate the new average value for each of the five delegate personal attributes
@@ -69,7 +69,7 @@ class Delegate < ActiveRecord::Base
     dco = ("case" + case_id.to_s + "_overall").parameterize.underscore.to_sym
     dccount = ("case" + case_id.to_s + "_eval_count").parameterize.underscore.to_sym
 
-    old_eval_count = temp_delegate.dccount.to_decimal
+    old_eval_count = temp_delegate.dccount.to_f
     temp_delegate.dccount += 1
 
     temp_delegate.dcim = (temp_delegate.dcim*old_eval_count + impact)/(old_eval_count + 1.0)
@@ -170,14 +170,17 @@ class Delegate < ActiveRecord::Base
   ###############
   def selc.total_points_by_case(d_id)
     temp_delegate = Delegate.where(:id => d_id)
-    # Sum the scores for a given case number and weight (will be a value out of 50, e.g. for case 1 peer evaluations)
+    # Sum the scores for a given case number and source (will be a value out of 50, e.g. for case 1 peer evaluations)
+
 
     # Multiply this sum by the appropriate weight factor
 
+
     # You now have the number of points obtained from each category and for each case. These can be plotted on a stacked bar graph.
+
+
+    
   end
-
-
 
 
 
