@@ -55,10 +55,17 @@ class Delegate < ActiveRecord::Base
   	(impact +  feasibility + innovation + presentation + overall) / @num_finished_cases
   end
 
-  def self.case_score(case_eval, case_w_score)
+  def self.case_criteria_score(impact, feasibility, innovation, presentation, overall)
 
-  	
+    # Array keeping scores of c1...c4
+    case_scores = [0,0,0,0]
+
+    if (@num_finished_cases == 1)
+
+      case_scores[]
+
 
   end
+
 
 end
