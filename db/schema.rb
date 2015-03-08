@@ -87,6 +87,8 @@ ActiveRecord::Schema.define(version: 20150308112234) do
     t.integer  "case_three_score",                default: 0
     t.integer  "case_four_score",                 default: 0
     t.string   "delegate_program"
+    t.integer  "num_peer_evals",                  default: 0
+    t.integer  "num_exec_evals",                  default: 0
     t.integer  "num_complete_cases",              default: 0
     t.decimal  "estimated_overall_contribution",  default: 0.0
     t.decimal  "estimated_leadership",            default: 0.0

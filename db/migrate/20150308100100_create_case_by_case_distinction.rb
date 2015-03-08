@@ -21,8 +21,6 @@ class CreateCaseByCaseDistinction < ActiveRecord::Migration
   	remove_column :delegates, :exec_business_sense
   	remove_column :delegates, :exec_presentation_skills
   	remove_column :delegates, :exec_overall_contribution
-  	remove_column :delegates, :num_peer_evals
-  	remove_column :delegates, :num_exec_evals
 
   	add_column :delegates, :case1_peer_leadership, :decimal, :default => 0.0
   	add_column :delegates, :case1_peer_creativity, :decimal, :default => 0.0

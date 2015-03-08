@@ -11,8 +11,6 @@ class AddPeerDistinctionToDelegate < ActiveRecord::Migration
   	add_column :delegates, :exec_presentation_skills, :decimal, :default => 0.0
   	add_column :delegates, :exec_overall_contribution, :decimal, :default => 0.0
 
-  	add_column :delegates, :num_peer_evals, :integer, :default => 0
-  	add_column :delegates, :num_exec_evals, :integer, :default => 0
   	add_column :delegates, :num_complete_cases, :integer, :default => 0
 
   	remove_column :delegates, :presentation
