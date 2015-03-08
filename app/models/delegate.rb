@@ -24,6 +24,7 @@ class Delegate < ActiveRecord::Base
   	Feedback.where(:receiver => d_id).count
   end
 
+
   def self.avg_top_x(criteria, x)
 
   	criteria_sym = criteria.parameterize.underscore.to_sym

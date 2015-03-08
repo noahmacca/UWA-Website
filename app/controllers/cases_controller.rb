@@ -1,5 +1,6 @@
 class CasesController < ApplicationController
   before_action :set_case, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_executive!, only: [:create, :edit]
  layout "delegate_dashboard"
 
   respond_to :html
@@ -51,4 +52,11 @@ class CasesController < ApplicationController
     def case_params
       params.require(:case).permit(:title, :sponsor, :description)
     end
+
+    # Don't allow delegates to access what they're not supposed to
+    def authenticate_executive!
+      if not current_admin_user
+        raise ActionController::RoutingError.new('Not Found')
+    end
+  end
 end
