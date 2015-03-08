@@ -15,6 +15,6 @@ ActiveAdmin.register Exec do
   # end
 
 
-permit_params :exec_name, :position, :team, :program, :responsibilities
+permit_params :exec_name, :position, :team, :program, :responsibilities, :picture
 
 end

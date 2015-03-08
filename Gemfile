@@ -43,3 +43,6 @@ gem "chartkick"
 gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
 
 gem 'simple_form'
+
+gem 'tzinfo-data'
+gem 'tzinfo'
