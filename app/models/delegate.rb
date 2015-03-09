@@ -45,8 +45,8 @@ class Delegate < ActiveRecord::Base
     # Need to track the counts to update the averages appropriately
     ### NOTE Not sure if .to_f is a valid command. 
     #     Need to do this because we're using it to multiply the old average, which is a decimal
-    old_eval_count = temp_delegate.dacount.to_f
-    temp_delegate.dacount += 1
+    old_eval_count = temp_delegate[dacount].to_f
+    temp_delegate[dacount] += 1
 
     # Calculate the new average value for each of the five delegate personal attributes
     temp_delegate.dal = (temp_delegate.da1*old_eval_count + leadership)/(old_eval_count + 1.0)
