@@ -4,6 +4,7 @@ class InfoController < ApplicationController
 	end
 
 	def itinerary
+		render :layout => "delegate_dashboard"
 	end
 
 end

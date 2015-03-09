@@ -5,7 +5,11 @@
 <% Delegate.all.each do |d| %>
 <div class="block-update-card">
 	<div class="update-card-body">
+	<div class="col-md-10">
 		<h3><%= d.fullname %> <small><%= d.delegate_program %></small></h3>
+		</div>
+
+		<div class="col-md-2">
 		<ul class="list-inline">
 			
 
@@ -33,6 +37,7 @@
 						
 <% end %>
 					</ul>
+					</div>
 				</div>
 			</div>
 

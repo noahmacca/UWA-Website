@@ -8,7 +8,7 @@
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true,:readonly => true, class: 'form-control' %>
   </div>
-
+<!--
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
   <% end %>
@@ -22,16 +22,53 @@
     <%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation, autocomplete: "off", class: 'form-control'  %>
   </div>
+-->
+
+  <div class="form-group">
+    <%= f.label :facebook %><i>(start with 'http://' please)</i><br />
+    <%= f.text_field :facebook, class: 'form-control'  %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :twitter %><i>(start with 'http://' please)</i><br />
+    <%= f.text_field :twitter, class: 'form-control'  %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :linkedin %><i>(start with 'http://' please)</i><br />
+    <%= f.text_field :linkedin, class: 'form-control'  %>
+  </div>
+
+<div class="form-group">
+    <%= f.label :estimated_leadership %><br />
+    <%= f.number_field :estimated_leadership, class: 'form-control', in: 1..10   %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :estimated_business_sense %><br />
+    <%= f.number_field :estimated_business_sense, class: 'form-control', in: 1..10   %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :estimated_creativity %><br />
+    <%= f.number_field :estimated_creativity, class: 'form-control', in: 1..10   %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :estimated_presentation_skills %><br />
+    <%= f.number_field :estimated_presentation_skills, class: 'form-control', in: 1..10   %>
+  </div>
+
+<div class="form-group">
+    <%= f.label :estimated_overall_contribution %><br />
+    <%= f.number_field :estimated_overall_contribution, class: 'form-control', in: 1..10   %>
+  </div>
 
   <div class="form-group">
     <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
     <%= f.password_field :current_password, autocomplete: "off", class: 'form-control'  %>
   </div>
 
-  <div class="form-group">
-    <%= f.label :linkedin %><br />
-    <%= f.text_field :linkedin, class: 'form-control'  %>
-  </div>
 
   <div class="actions">
     <%= f.submit "Update", :class => 'btn btn-success' %>

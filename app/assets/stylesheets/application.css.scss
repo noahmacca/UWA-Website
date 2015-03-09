@@ -207,3 +207,61 @@ Creating a block for social media buttons
 .sidebar-item{
     font-size: 2em;
 }
+.navbar-nav > li > a {
+  font-size:1.4em;
+}
+
+.social i{
+  color:white;
+}
+
+.social i:hover{
+  color:inherit;
+}
+
+.delegate-nav {
+  width: 600px;
+  height: 52px;
+  overflow: hidden;
+  position: fixed;
+  z-index:10000;
+  left: 25%;
+  margin: 0 0 0 -37.5%;
+}
+.delegate-nav li { 
+  height: 52px;
+  margin-right: 2px;
+  float: left;
+  list-style-type: none;
+   }
+.delegate-nav li a {
+  height: 50px;
+  padding: 0 20px;
+  border: 1px solid $brand_yellow;
+  font-weight: bold;
+  line-height: 50px;
+  text-decoration: none;
+  display: block;
+}
+.delegate-nav li a:hover { background: $brand_yellow; }
+.delegate-nav li.active a { background: $brand_yellow; }
+
+.list-inline{
+  margin-top:30px;
+}
+
+.pill-wrapper{
+background:white;
+    width: 100%;
+  height: 100px;
+  overflow: hidden;
+  position: fixed;
+  margin: -100px 0 0 0;
+  z-index:100;
+  left:0%;
+  right:0%;
+}
+.modal .modal-body {
+    max-height: 420px;
+    overflow-y: auto;
+}

@@ -3,13 +3,15 @@
     <!-- Header -->
     <header id="top" class="header">
         <div class="text-vertical-center">
+
+        <center><%= image_tag("logo-home.png", class: 'img-responsive', :style => 'width:100px') %></center>
             <h1>Innovate. Impact. Experience.</h1>
             <h3>Apprentice Is The Premier Case Competition For Waterloo's Most Innovative Students</h3>
             <br>
 
             <%= button_tag "Login", class: 'btn btn-success', :'data-toggle' => 'modal', :'data-target' => '#loginModal'%>
 
-            <ul class="list-inline" style="padding-top:60px;">
+            <ul class="list-inline social" style="padding-top:60px;">
                         <li>
                         <%= link_to "https://www.facebook.com/uwapprentice", method: :put do %>
              			 <%= fa_icon "facebook 2x" %>
@@ -116,6 +118,8 @@
 
         </div>
         <center><%= button_to "Other Executives", team_path, method: :get, class: 'btn btn-success' %></center>
+
+<%= button_tag "Team", class: 'btn btn-success', :'data-toggle' => 'modal', :'data-target' => '#teamModal'%>
 
         </div>
         </section>

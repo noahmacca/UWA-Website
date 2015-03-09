@@ -11,7 +11,7 @@
     <p class="alert"><%= alert %></p>-->
 
     <!-- Static navbar -->
-    <nav class="navbar navbar-default navbar-fixed-top">
+    <nav class="navbar navbar-default navbar-static-top">
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -21,7 +21,10 @@
             <span class="icon-bar"></span>
           </button>
 
-          <%= link_to "Apprentice", root_path, class: 'navbar-brand' %>
+          <%= link_to root_path do |l| %>
+          <%= image_tag("logo-home.png", class: 'navbar-brand', :style => 'width:40px') %>
+
+          <% end %>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
@@ -36,12 +39,35 @@
 
             <% end %>
           </ul>
-        </div><!--/.nav-collapse -->
+        </div>
+      </div>
       </div>
     </nav>
 
+
+<div class="pill-wrapper" style="display:inline-block" >
+
+</div>
+        
+    <center><ul class="nav nav-pills delegate-nav" style="margin-left:120px;">
+
+<%= content_tag(:li, link_to("Main", portal_path), class: cp(portal_path)) %>
+
+  <%= content_tag(:li, link_to("Host Info", hosts_path), class: cp(hosts_path)) %>
+   <%= content_tag(:li, link_to("Intinerary", itinerary_path), class: cp(itinerary_path)) %>
+   
+   <%= content_tag(:li, link_to("Delegates", all_delegates_path), class: cp(all_delegates_path)) %>
+    <%= content_tag(:li, link_to("Profile", edit_delegate_registration_path), class: cp(edit_delegate_registration_path)) %>
+   
+    
+
+
+</ul></center>
+</div>
+<!--
     <div class="container-fluid">
      <div class="row">
+     <div id="wrapper">
        <div class="col-sm-3 col-md-2 sidebar">
        <div class="container">
         <ul class="nav nav-sidebar">
@@ -75,7 +101,8 @@
           </div>
           </li>
 
-    <!--      <li>
+
+          <li>
 <div class="sidebar-item">
 
 <%= fa_icon "info-circle" %> | 
@@ -89,17 +116,20 @@
               </li>
             </ul>
             </div>
-          </li> -->
+          </li> 
 
-        </ul>
-      </ul>
-      </div>
-    </div>
-    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">   
+        </ul>-->
+
+
+ 
+    <!--<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">    -->
+
+    <div class="col-md-12" style="padding-top:70px;">
       <%= yield %>
     </div>
   </div>
 </div>
+
 
 </body>
 </html>
