@@ -147,4 +147,195 @@
 </div>
 </div>
 
+
+<% @avg_individual_scores = Delegate.average_delegate_attribute_scores(current_delegate.id) %>
+
+<!-- GBTT Put this in JS -->
+<script type="text/javascript" charset="utf-8">
+
+$(function(){
+    new Highcharts.Chart({
+
+        chart:{
+            renderTo: "individual_attributes_chart",
+            type: "spline"
+        },
+
+        title:{
+            text: "Your Attributes"
+        },
+
+        xAxis:{
+            categories: ["Leadership", "Creativity", "Business Sense", "Presentation", "Contribution"]
+        },
+
+        yAxis:{
+            text: "Score",
+            min: 0,
+            max: 10,
+            gridLineColor: 'transparent',
+            title: {
+                text: 'Score'
+            }
+        },
+        credits: {
+      enabled: false
+  },
+
+        series:[{
+            name: "Current",
+
+            
+            data: [<%= @avg_individual_scores[0] %>, <%= @avg_individual_scores[1] %>, <%= @avg_individual_scores[2] %>, <%= @avg_individual_scores[3] %>,<%= @avg_individual_scores[4] %>]
+        }, {name: "Estimation",
+ data: [<%= current_delegate.estimated_leadership / @num_finished_cases %>, <%= current_delegate.estimated_creativity / @num_finished_cases %>, <%= current_delegate.estimated_business_sense / @num_finished_cases %>, <%= current_delegate.estimated_presentation_skills / @num_finished_cases%>,<%= current_delegate.estimated_overall_contribution / @num_finished_cases %>]}]
+
+    });
+
+});
+
+</script>
+
+<% @avg_case_scores = Delegate.average_case_eval_scores(current_delegate.id) %>
+
+<script type="text/javascript" charset="utf-8">
+
+$(function(){
+    new Highcharts.Chart({
+
+        chart:{
+            renderTo: "case_attributes_chart",
+            type: "spline"
+        },
+
+        title:{
+            text: "Case Attributes"
+        },
+
+        xAxis:{
+            categories: ["Impact", "Feasibility", "Innovation", "Presentation", "Overall"]
+        },
+
+        yAxis:{
+            text: "Score",
+            min: 0,
+            max: 10,
+            gridLineColor: 'transparent',
+            title: {
+                text: 'Score'
+            }
+        },
+        credits: {
+      enabled: false
+  },
+
+        series:[{
+            name: "Current",
+            data: [<%= @avg_case_scores[0] %>, <%= @avg_case_scores[1] %>, <%= @avg_case_scores[2] %>, <%= @avg_case_scores[3] %>, <%= @avg_case_scores[4] %>]
+        }]
+
+    });
+
+});
+
+</script>
+
+<% @points_by_source = Delegate.total_points_by_source(current_delegate.id) %>
+<% @max_scores = Delegate.max_values %>
+
+<script type="text/javascript" charset="utf-8">
+
+$(function(){
+    new Highcharts.Chart({
+
+        chart:{
+            renderTo: "point_breakdown_by_source",
+            type: "spline"
+        },
+
+        title:{
+            text: "Point Breakdown By Source"
+        },
+
+        xAxis:{
+            categories: ["Peer Evaluation", "Executive Evaluation", "Case Evaluation", "Case Position"]
+        },
+
+        yAxis:{
+            text: "Score",
+            min: 0,
+            max: <%= @max_scores[3]%>,
+            gridLineColor: 'transparent',
+            title: {
+                text: 'Score'
+            }
+        },
+        credits: {
+      enabled: false
+  },
+
+        series:[{
+            name: "Your Points",
+
+            
+            data: [<%= @points_by_source[0] %>, <%= @points_by_source[1] %>, <%= @points_by_source[2] %>, <%= @points_by_source[3] %>,<%= @points_by_source[4] %>]
+        }, {name: "Max",
+ data: [<%= @max_scores[0]%>,<%= @max_scores[1]%>,<%= @max_scores[2]%>,
+ <%= @max_scores[3]%>]}]
+
+    });
+
+});
+
+</script>
+
+<% @case1_points = Delegate.total_points_by_case(current_delegate.id, 1)%>
+<% @case2_points = Delegate.total_points_by_case(current_delegate.id, 2)%>
+<% @case3_points = Delegate.total_points_by_case(current_delegate.id, 3)%>
+<% @case4_points = Delegate.total_points_by_case(current_delegate.id, 4)%>
+
+<script type="text/javascript" charset="utf-8">
+
+$(function(){
+    new Highcharts.Chart({
+
+        chart:{
+            renderTo: "points_each_case",
+            type: "spline"
+        },
+
+        title:{
+            text: "Points Achieved In Each Case"
+        },
+
+        xAxis:{
+            categories: ["Case 1", "Case 2", "Case 3", "Case 4"]
+        },
+
+        yAxis:{
+            text: "Score",
+            min: 0,
+            max: 1000,
+            gridLineColor: 'transparent',
+            title: {
+                text: 'Score'
+            }
+        },
+        credits: {
+      enabled: false
+  },
+
+        series:[{
+            name: "Your Points",
+
+            
+            data: [<%= @case1_points %>, <%= @case2_points %>, <%= @case3_points %>, <%= @case4_points %>]
+        }]
+
+    });
+
+});
+
+</script>
+
 </div>
