@@ -100,13 +100,13 @@ class Delegate < ActiveRecord::Base
 
     if case_position <= 3
       if case_number == 1
-        temp_delegate[case1score] = discount_factor*50
+        temp_delegate[case1score] = discount_factor*@raw_max
       elsif case_number == 2
-        temp_delegate[case2score] = discount_factor*50
+        temp_delegate[case2score] = discount_factor*@raw_max
       elsif case_number == 3
-        temp_delegate[case3score] = discount_factor*50
+        temp_delegate[case3score] = discount_factor*@raw_max
       elsif case_number == 4
-        temp_delegate[case4score] = discount_factor*50
+        temp_delegate[case4score] = discount_factor*@raw_max
       end
     else
       if case_number == 1
@@ -122,10 +122,6 @@ class Delegate < ActiveRecord::Base
 
     temp_delegate.save!
   end
-
-
-
-
 
   #################
   ### Summary of Plot inputs/outputs

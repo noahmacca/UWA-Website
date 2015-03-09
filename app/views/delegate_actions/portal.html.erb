@@ -19,8 +19,6 @@
 <% @num_finished_cases = @num_finished_cases = 0 ? -1 : @num_finished_cases %>
 
 
-<% @points_by_source = Delegate.total_points_by_source(current_delegate.id) %>
-<% @max_scores = Delegate.max_values %>
 
 
 
@@ -254,6 +252,9 @@ $(function(){
 
 </script>
 
+
+<% @points_by_source = Delegate.total_points_by_source(current_delegate.id) %>
+<% @max_scores = Delegate.max_values %> 
 
 <!-- GBTT: temp fix for score update delay -->
 <script type="text/javascript" charset="utf-8">
