@@ -30,7 +30,7 @@ class Delegate < ActiveRecord::Base
     # This function deals with both peer and exec scores
     if eval_type == 1
       source = "peer"
-    elsif evaltype == 2
+    elsif eval_type == 2
       source = "exec"
     end
 
@@ -49,15 +49,18 @@ class Delegate < ActiveRecord::Base
     temp_delegate[dacount] += 1
 
     # Calculate the new average value for each of the five delegate personal attributes
-    temp_delegate.dal = (temp_delegate.da1*old_eval_count + leadership)/(old_eval_count + 1.0)
-    temp_delegate.dac = (temp_delegate.dac*old_eval_count + creativity)/(old_eval_count + 1.0)
-    temp_delegate.dabs = (temp_delegate.dabs*old_eval_count + business_sense)/(old_eval_count + 1.0)
-    temp_delegate.daps = (temp_delegate.daps*old_eval_count + presentation_skills)/(old_eval_count + 1.0)
-    temp_delegate.daoc = (temp_delegate.daoc*old_eval_count + overall_contribution)/(old_eval_count + 1.0)
+    temp_delegate[dal] = (temp_delegate[dal]*old_eval_count + leadership)/(old_eval_count + 1.0)
+    temp_delegate[dac] = (temp_delegate[dac]*old_eval_count + creativity)/(old_eval_count + 1.0)
+    temp_delegate[dabs] = (temp_delegate[dabs]*old_eval_count + business_sense)/(old_eval_count + 1.0)
+    temp_delegate[daps] = (temp_delegate[daps]*old_eval_count + presentation_skills)/(old_eval_count + 1.0)
+    temp_delegate[daoc] = (temp_delegate[daoc]*old_eval_count + overall_contribution)/(old_eval_count + 1.0)
+
+    temp_delegate.save!
 
   end
 
-  # Case 1: Update Case Evaluation Scores
+
+  # Update Case Evaluation Scores
   def self.update_case_eval_scores(d_id, case_id, impact, feasibility, innovation, presentation, overall)
     # This function should work!
     temp_delegate = Delegate.where(:id => d_id).first
@@ -69,38 +72,64 @@ class Delegate < ActiveRecord::Base
     dco = ("case" + case_id.to_s + "_overall").parameterize.underscore.to_sym
     dccount = ("case" + case_id.to_s + "_eval_count").parameterize.underscore.to_sym
 
-    old_eval_count = temp_delegate.dccount.to_f
-    temp_delegate.dccount += 1
+    old_eval_count = temp_delegate[dccount].to_f
+    temp_delegate[dccount] += 1
 
-    temp_delegate.dcim = (temp_delegate.dcim*old_eval_count + impact)/(old_eval_count + 1.0)
-    temp_delegate.dcf = (temp_delegate.dcf*old_eval_count + feasibility)/(old_eval_count + 1.0)
-    temp_delegate.dcin = (temp_delegate.dcin*old_eval_count + innovation)/(old_eval_count + 1.0)
-    temp_delegate.dcp = (temp_delegate.dcp*old_eval_count + presentation)/(old_eval_count + 1.0)
-    temp_delegate.dco = (temp_delegate.dco*old_eval_count + overall)/(old_eval_count + 1.0)
+    temp_delegate[dcim] = (temp_delegate[dcim]*old_eval_count + impact)/(old_eval_count + 1.0)
+    temp_delegate[dcf] = (temp_delegate[dcf]*old_eval_count + feasibility)/(old_eval_count + 1.0)
+    temp_delegate[dcin] = (temp_delegate[dcin]*old_eval_count + innovation)/(old_eval_count + 1.0)
+    temp_delegate[dcp] = (temp_delegate[dcp]*old_eval_count + presentation)/(old_eval_count + 1.0)
+    temp_delegate[dco] = (temp_delegate[dco]*old_eval_count + overall)/(old_eval_count + 1.0)
+
+    temp_delegate.save!
 
   end
+
   
   # Update Case Position Scores
   def self.update_case_pos_scores(d_id, case_number, case_position)
+
     temp_delegate = Delegate.where(:id => d_id).first
-    # This needs fixing
-    if case_number == 1
-      case_one_score = (case_position/x)*50
-    elsif case_number == 2
-      case_two_score = (case_position/x)*50
-    elsif case_number == 3
-      case_three_score = (case_position/x)*50
-    elsif case_number == 4
-      case_three_score = (case_position/x)*50
+
+    case1score = ("case_one_score").parameterize.underscore.to_sym
+    case2score = ("case_two_score").parameterize.underscore.to_sym
+    case3score = ("case_three_score").parameterize.underscore.to_sym
+    case4score = ("case_four_score").parameterize.underscore.to_sym
+
+    discount_factor = 1/(case_position.to_f)
+
+    if case_position <= 3
+      if case_number == 1
+        temp_delegate[case1score] = discount_factor*50
+      elsif case_number == 2
+        temp_delegate[case2score] = discount_factor*50
+      elsif case_number == 3
+        temp_delegate[case3score] = discount_factor*50
+      elsif case_number == 4
+        temp_delegate[case4score] = discount_factor*50
+      end
+    else
+      if case_number == 1
+        temp_delegate[case1score] = 0
+      elsif case_number == 2
+        temp_delegate[case2score] = 0
+      elsif case_number == 3
+        temp_delegate[case3score] = 0
+      elsif case_number == 4
+        temp_delegate[case4score] = 0
+      end
     end
+
+    temp_delegate.save!
   end
+
+
+
+
 
   #################
   ### Summary of Plot inputs/outputs
   #################
-
-
-
   ###############
   ### Plot 1: Individual Attribute Scores
   ###   Average the scores across all of the complete cases, and execs/peer evals
@@ -417,6 +446,10 @@ class Delegate < ActiveRecord::Base
       weighted_peer_score = raw_peer_score_sum * @peer_evals_weight
       weighted_case_eval_score = raw_case_eval_score_sum * @case_evals_weight
       weighted_case_pos_score = raw_case_pos_score * @case_pos_weight
+
+      conference_score = weighted_exec_score + weighted_peer_score + weighted_case_eval_score + weighted_case_pos_score
+      temp_delegate.total_score = conference_score
+      temp_delegate.save!
 
       # return total_points_by_source_output[peer scores, exec scores, case eval scores, case pos scores]  
       return total_points_by_source_output = [weighted_peer_score, weighted_exec_score, weighted_case_eval_score, weighted_case_pos_score]
