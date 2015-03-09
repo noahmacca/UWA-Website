@@ -30,4 +30,6 @@ Rails.application.routes.draw do
     get '/itinerary', to: 'info#itinerary'
 
     get '/faqs', to: 'info#faq'
+
+    get '/stay_tuned', to: 'info#stay_tuned'
 end

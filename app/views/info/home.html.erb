@@ -117,9 +117,7 @@
         <% end %>
 
         </div>
-        <center><%= button_to "Other Executives", team_path, method: :get, class: 'btn btn-success' %></center>
-
-<%= button_tag "Team", class: 'btn btn-success', :'data-toggle' => 'modal', :'data-target' => '#teamModal'%>
+<center><%= button_tag "Full Team", class: 'btn btn-success', :'data-toggle' => 'modal', :'data-target' => '#teamModal'%></center>
 
         </div>
         </section>
@@ -135,7 +133,6 @@
 <div class="col-md-4">
 
 <%= image_tag(s.sponsor_logo, :class => 'img-responsive') %>
-<h4><%= s.sponsor %></h4>
 </div>
 
 <% end %>
@@ -148,7 +145,7 @@
 <div class="col-md-4">
 
 <%= image_tag(s.sponsor_logo, :class => 'img-responsive') %>
-<h4><%= s.sponsor %></h4>
+<br>
 </div>
 
 <% end %>

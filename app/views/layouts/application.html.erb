@@ -29,7 +29,7 @@
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
             <li class="link-formatting"><%= link_to "About", team_path %></li>
-            <li class="link-formatting"><%= link_to "Blog", "//google.com" %></li>
+            <li class="link-formatting"><%= link_to "Blog", stay_tuned_path %></li>
 
             <% if delegate_signed_in? %>
 <li><%= link_to "Logout", destroy_delegate_session_path, :method => :delete %></li>
@@ -50,7 +50,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-10 col-lg-offset-1 text-center">
-                    <h4><strong>UW Apprentice</strong>
+                    <h4><strong>Apprentice</strong>
                     </h4>
                     <ul class="list-inline social">
                         <li>
@@ -107,14 +107,14 @@
         <div class="modal fade" id="teamModal">
   <div class="modal-dialog">
     <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel" >Login</h4>
+      <div class="modal-header" style="padding:0px">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="padding:10px"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title text-center" id="myModalLabel" >Apprentice Team</h4>
       </div>
         <div class="modal-body">
+              <span style="margin:200px"></span>
 
-
-      <ul id="filterOptions" class="nav nav-pills" style="margin-left:150px;padding-top:100px;">
+      <ul id="filterOptions" class="nav nav-pills" style="margin-left:120px;margin-top:200px">
         <li class="active"><a href="#" class="all">Full Team</a></li>
         <li><a href="#" class="president">Presidents</a></li>
         <li><a href="#" class="marketing">Marketing</a></li>

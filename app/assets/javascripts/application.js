@@ -76,7 +76,7 @@ $("#menu-close").click(function(e) {
     // Scrolling
   $(window).on('scroll', function() {
     var y_scroll_pos = window.pageYOffset;
-    var scroll_pos_test = 40;
+    var scroll_pos_test = 35;
 
     if(y_scroll_pos > scroll_pos_test) {
         $('.nav').css('margin-top','-60px');

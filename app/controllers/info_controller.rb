@@ -7,4 +7,7 @@ class InfoController < ApplicationController
 		render :layout => "delegate_dashboard"
 	end
 
+	def stay_tuned
+	end
+
 end

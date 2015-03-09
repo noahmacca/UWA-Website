@@ -29,7 +29,7 @@
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
             <li><%= link_to "Team", team_path %></li>
-            <li><%= link_to "Blog", "//google.com" %></li>
+            <li><%= link_to "Blog", stay_tuned_path %></li>
 
             <% if delegate_signed_in? %>
             <li><%= link_to "Logout", destroy_delegate_session_path, :method => :delete %></li>
@@ -55,13 +55,10 @@
 
   <%= content_tag(:li, link_to("Host Info", hosts_path), class: cp(hosts_path)) %>
    <%= content_tag(:li, link_to("Intinerary", itinerary_path), class: cp(itinerary_path)) %>
-   
+
    <%= content_tag(:li, link_to("Delegates", all_delegates_path), class: cp(all_delegates_path)) %>
     <%= content_tag(:li, link_to("Profile", edit_delegate_registration_path), class: cp(edit_delegate_registration_path)) %>
    
-    
-
-
 </ul></center>
 </div>
 <!--

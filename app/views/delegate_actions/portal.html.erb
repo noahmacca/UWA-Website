@@ -1,7 +1,7 @@
 <!-- <h1><%= current_delegate.fullname %></h1>
 <hr>-->
 
-<% if current_delegate.linkedin == nil or current_delegate.facebook or current_delegate.twitter %>
+<% if current_delegate.linkedin == '' or current_delegate.facebook == '' or current_delegate.twitter == '' %>
 <div class="alert alert-warning" role="alert">
 	
 	<p>Pssstttt <%= current_delegate.fullname %>, you have yet to fill out your social info.  Fill it out so other delegates
@@ -17,6 +17,12 @@
 <% @num_finished_cases = Case.where(:case_sponsor => true).where(:done => true).count %>
 
 <% @num_finished_cases = @num_finished_cases = 0 ? -1 : @num_finished_cases %>
+
+
+<% @points_by_source = Delegate.total_points_by_source(current_delegate.id) %>
+<% @max_scores = Delegate.max_values %>
+
+
 
 <h2 class="text-center">Overview</h2>
     <div class="row">
@@ -43,7 +49,7 @@
 
    <%= link_to "#analytics" do %>
  <div class="col-lg-3 col-md-6">
-                        <div class="panel panel-yellow">
+                        <div class="panel panel-primary">
                             <div class="panel-heading">
                                 <div class="row">
                                     <div class="col-xs-3">
@@ -64,7 +70,7 @@
 
 <%= link_to new_feedback_path do %>
                     <div class="col-lg-3 col-md-6">
-                        <div class="panel panel-green">
+                        <div class="panel panel-primary">
                             <div class="panel-heading">
                                 <div class="row">
                                     <div class="col-xs-3">
@@ -84,7 +90,7 @@
 
 <%= link_to feedbacks_path do %>
                     <div class="col-lg-3 col-md-6">
-                        <div class="panel panel-red">
+                        <div class="panel panel-primary">
                             <div class="panel-heading">
                                 <div class="row">
                                     <div class="col-xs-3">
@@ -150,6 +156,10 @@
 
 <% @avg_individual_scores = Delegate.average_delegate_attribute_scores(current_delegate.id) %>
 
+<% @avg_individual_scores.each do |s| %>
+<% s = s.round(2) %>
+<% end %>
+
 <!-- GBTT Put this in JS -->
 <script type="text/javascript" charset="utf-8">
 
@@ -198,6 +208,10 @@ $(function(){
 
 <% @avg_case_scores = Delegate.average_case_eval_scores(current_delegate.id) %>
 
+<% @avg_case_scores.each do |s| %>
+<% s = s.round(2) %>
+<% end %>
+
 <script type="text/javascript" charset="utf-8">
 
 $(function(){
@@ -240,27 +254,21 @@ $(function(){
 
 </script>
 
-<% @points_by_source = Delegate.total_points_by_source(current_delegate.id) %>
-<% @max_scores = Delegate.max_values %>
 
+<!-- GBTT: temp fix for score update delay -->
 <script type="text/javascript" charset="utf-8">
-
 $(function(){
     new Highcharts.Chart({
-
         chart:{
             renderTo: "point_breakdown_by_source",
             type: "spline"
         },
-
         title:{
             text: "Point Breakdown By Source"
         },
-
         xAxis:{
             categories: ["Peer Evaluation", "Executive Evaluation", "Case Evaluation", "Case Position"]
         },
-
         yAxis:{
             text: "Score",
             min: 0,
@@ -343,7 +351,7 @@ $(function(){
             name: " Case Evaluation Score",
 
             
-            data: [<%= @case1_points[2] %>, <%= @case2_points[2] %>, <%= @case3_points[2]  %>, <%= @case4_points[2] %>]
+            data: [<%= @case1_points[2] %>, <% @case2_points[2] %>, <%= @case3_points[2]  %>, <%= @case4_points[2] %>]
         },{
             name: " Case Position Score",
 
@@ -359,5 +367,4 @@ $(function(){
 });
 
 </script>
-
 </div>
