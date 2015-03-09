@@ -301,7 +301,7 @@ $(function(){
 
         chart:{
             renderTo: "points_each_case",
-            type: "spline"
+            type: "column"
         },
 
         title:{
@@ -323,14 +323,36 @@ $(function(){
         },
         credits: {
       enabled: false
-  },
+  },plotOptions: {
+            column: {
+                stacking: 'percent'
+            }
+        },
 
         series:[{
-            name: "Your Points",
+            name: "Peer Score",
 
             
-            data: [<%= @case1_points %>, <%= @case2_points %>, <%= @case3_points %>, <%= @case4_points %>]
-        }]
+            data: [<%= @case1_points[0] %>, <%= @case2_points[0] %>, <%= @case3_points[0]  %>, <%= @case4_points[0] %>]
+        },{
+            name: " Executive Score",
+
+            
+            data: [<%= @case1_points[1] %>, <%= @case2_points[1] %>, <%= @case3_points[1]  %>, <%= @case4_points[1] %>]
+        },{
+            name: " Case Evaluation Score",
+
+            
+            data: [<%= @case1_points[2] %>, <%= @case2_points[2] %>, <%= @case3_points[2]  %>, <%= @case4_points[2] %>]
+        },{
+            name: " Case Position Score",
+
+            
+            data: [<%= @case1_points[3] %>, <%= @case2_points[3] %>, <%= @case3_points[3]  %>, <%= @case4_points[3] %>]
+        }
+
+
+        ]
 
     });
 
